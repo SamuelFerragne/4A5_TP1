@@ -7,7 +7,7 @@ import "./Prof.css";
 
 function Prof({ prof }) {
   return (
-    <li className="prof-item">
+    <li className="prof-item" key={prof.key}>
       <Card className="prof-item__content">
         <div className="prof-item__image">
           <Avatar image={prof.image} alt={prof.nom} />

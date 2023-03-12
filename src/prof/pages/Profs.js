@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import ListeProfs from "../components/ListeProfs";
+import NouveauProf from "../components/NouveauProf";
 
 function Profs() {
   var defaultImage =
@@ -17,7 +18,12 @@ function Profs() {
     console.log(profs);
   }
 
-  return <ListeProfs profs={profs} />;
+  return (
+    <React.Fragment>
+      <ListeProfs profs={profs} />
+      <NouveauProf adresseMethode={ajouterProf} />
+    </React.Fragment>
+  );
 }
 
 export default Profs;
