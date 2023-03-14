@@ -1,26 +1,45 @@
 import React, { useState } from "react";
 
-function NouveauProf({ adresseMethode }) {
-  const IMPORTANCE_DEFAUT = 5;
+function NouveauProf({ methodeAjouterProf }) {
   const [saisie, setSaisie] = useState("");
+  const [prenom, setPrenom] = useState("");
+  const [nom, setNom] = useState("");
+  const [photo, setPhoto] = useState("");
 
-  const [saisieImportance, setSaisieImportance] = useState(IMPORTANCE_DEFAUT);
-
-  function ajouterNouvelObjectifHandler(event) {
+  function ajouterNouveauProfHandler(event) {
     event.preventDefault();
-    const nouvelObjectif = {
+    const nouveauProf = {
       id: "12",
-      texte: saisie,
-      importance: saisieImportance,
+      nom: nom,
+      prenom: prenom,
+      photo: photo,
     };
 
     if (saisie === "") {
       alert("Veuillez entrer un objectif");
       return;
     }
-    adresseMethode(nouvelObjectif);
-    setSaisie("");
-    setSaisieImportance(IMPORTANCE_DEFAUT);
+    methodeAjouterProf(nouveauProf);
+    setPrenom("");
+    setNom("");
+  }
+
+  function nomHandler(event) {
+    if (event.taget.value.length === 0) {
+      alert("Entrez un nom");
+      return;
+    }
+
+    setNom(event.target.value);
+  }
+
+  function prenomHandler(event) {
+    if (event.taget.value.length === 0) {
+      alert("Entrez un nom");
+      return;
+    }
+
+    setNom(event.target.value);
   }
 
   function saisieHandler(event) {
@@ -31,26 +50,12 @@ function NouveauProf({ adresseMethode }) {
     setSaisie(event.target.value);
   }
 
-  function saisieImportanceHandler(event) {
-    if (isNaN(event.target.value)) {
-      alert("Pas un nombre");
-      return;
-    }
-
-    setSaisieImportance(event.target.value);
-  }
-
   return (
-    <form onSubmit={ajouterNouvelObjectifHandler}>
-      <input type="text" value={saisie} onChange={saisieHandler} /> Objectif{" "}
+    <form onSubmit={ajouterNouveauProfHandler}>
+      <input type="text" value={prenom} onChange={prenomHandler} /> Prenom{" "}
       <br />
-      <input
-        type="text"
-        value={saisieImportance}
-        onChange={saisieImportanceHandler}
-      />{" "}
-      Importance <br />
-      <button type="submit">Soumettre objectif</button>
+      <input type="text" value={nom} onChange={nomHandler} /> Nom <br />
+      <button type="submit">Soumettre</button>
     </form>
   );
 }

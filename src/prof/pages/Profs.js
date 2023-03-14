@@ -21,7 +21,7 @@ function Profs() {
   return (
     <React.Fragment>
       <ListeProfs profs={profs} />
-      <NouveauProf adresseMethode={ajouterProf} />
+      <NouveauProf methodeAjouterProf={ajouterProf} />
     </React.Fragment>
   );
 }

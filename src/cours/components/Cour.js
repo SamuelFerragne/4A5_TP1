@@ -9,7 +9,7 @@ function Cour({ cour }) {
   return (
     <li className="cour-item">
       <Card className="cour-item__content">
-        <Link to={`/${cour.id}/info`}>
+        <Link to={`cours/${cour.id}/`}>
           <div className="cour-item__info">
             <h2>{cour.titre}</h2>
             <h3>
