@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-function NouveauCours({ ajouterCours, profs , setProfs}) {
+function NouveauCours({ ajouterCours, profs}) {
   const [titre, setTitre] = useState("");
   const [discipline, setDiscipline] = useState("");
   const [placesMax,setPlacesMax ] = useState("");
@@ -32,17 +32,6 @@ function NouveauCours({ ajouterCours, profs , setProfs}) {
     };
 
     ajouterCours(nouveauCours);
-
-    const updatedProfs = profs.map((prof) =>
-      prof.nom === selectedProf.nom
-        ? {
-            ...prof,
-            cours: [...prof.cours, nouveauCours],
-          }
-        : prof
-    );
-
-    setProfs(updatedProfs);
     setTitre("");
     setDiscipline("");
     setPlacesMax(0);

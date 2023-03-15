@@ -4,22 +4,10 @@ import NouveauCours from "../components/NouveauCours";
 import ListeCours from "../components/ListeCours";
 
   
-  function Cours({ cours, setCours, profs, setProfs}) {
-    function ajouterCours(nouveauCours) {
-      const updatedCours = [
-        ...cours,
-        {
-          ...nouveauCours,
-          prof: "",
-          etudiants: [],
-        },
-      ];
-  
-      setCours(updatedCours);
-    }
+  function Cours({ cours, profs, ajouterCoursEtMettreAJourProfs}) {
     return (
       <React.Fragment>
-      <NouveauCours ajouterCours={ajouterCours} profs={profs} setProfs={setProfs}/>
+      <NouveauCours ajouterCours={ajouterCoursEtMettreAJourProfs} profs={profs}/>
       <ListeCours cours={cours} />
       </React.Fragment>
     

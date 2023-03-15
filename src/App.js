@@ -67,6 +67,20 @@ function App() {
     },
   ]);
 
+  function ajouterCoursEtMettreAJourProfs(nouveauCours){
+    setCours(COURS.concat(nouveauCours));
+
+    const updatedProfs = PROFS.map((prof) =>
+    prof.nom === nouveauCours.prof.split(" ")[1]
+      ? {
+          ...prof,
+          cours: [...prof.cours, nouveauCours],
+        }
+      : prof
+    );
+
+    setProfs(updatedProfs);
+  }
   PROFS[0].cours = COURS.filter((cour) => cour.prof.includes(PROFS[0].nom));
 
   return (
@@ -81,7 +95,7 @@ function App() {
             <Profs profs={PROFS} setProfs={setProfs} cours={COURS}/>
           </Route>
           <Route path="/cours" exact>
-            <Cours cours={COURS} setCours={setCours} profs={PROFS} setProfs={setProfs}/>
+            <Cours cours={COURS} profs={PROFS} ajouterCoursEtMettreAJourProfs={ajouterCoursEtMettreAJourProfs}/>
           </Route>
           <Route path="/cours/:idCours" exact>
             <CourSelect cours={COURS} setCours={setCours} profs={PROFS}/>
