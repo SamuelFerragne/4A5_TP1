@@ -2,11 +2,9 @@ import React, { useState } from "react";
 import ListeProfs from "../components/ListeProfs";
 import NouveauProf from "../components/NouveauProf";
 
-function Profs() {
-  const [profs, setProfs] = useState([]);
-
+function Profs({ profs, setProfs }) {
   function ajouterProf(nouveauProf) {
-    setProfs((prevProfs) => prevProfs.concat(nouveauProf));
+    setProfs(profs.concat(nouveauProf));
   }
 
   return (
