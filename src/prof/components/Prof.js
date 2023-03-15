@@ -19,7 +19,7 @@ function Prof({ prof }) {
           </h2>
           <ul>
             {prof.cours.map((cour) => (
-              <li>{cour.titre}</li>
+              <li key={cour.id}>{cour.titre}</li>
             ))}
           </ul>
         </div>
