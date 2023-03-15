@@ -22,8 +22,8 @@ function App() {
       dateFin: "06-06-2023",
       prof: "Sylvain Labranche",
       etudiants: [
-        { prenom: "Samuel", nom: "Ferragne", DA: "FERS0123456" },
-        { prenom: "Liam", nom: "Brouillard", DA: "BROL0123456" },
+        { prenom: "Samuel", nom: "Ferragne", numero: "FERS0123456" },
+        { prenom: "Liam", nom: "Brouillard", numero: "BROL0123456" },
       ],
     },
     {
@@ -48,8 +48,8 @@ function App() {
       dateFin: "06-06-2023",
       prof: "Simon Deschenes",
       etudiants: [
-        { prenom: "Samuel", nom: "Ferragne", DA: "FERS0123456" },
-        { prenom: "Liam", nom: "Brouillard", DA: "BROL0123456" },
+        { prenom: "Samuel", nom: "Ferragne", numero: "FERS0123456" },
+        { prenom: "Liam", nom: "Brouillard", numero: "BROL0123456" },
       ],
     },
   ]);
@@ -84,7 +84,7 @@ function App() {
             <Cours cours={COURS} setCours={setCours} />
           </Route>
           <Route path="/cours/:idCours" exact>
-            <CourSelect cours={COURS} setCours={setCours}/>
+            <CourSelect cours={COURS} setCours={setCours} />
           </Route>
           <Redirect to="/" />
         </Switch>
