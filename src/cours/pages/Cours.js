@@ -4,7 +4,7 @@ import NouveauCours from "../components/NouveauCours";
 import ListeCours from "../components/ListeCours";
 
   
-  function Cours({ cours, setCours }) {
+  function Cours({ cours, setCours, profs, setProfs}) {
     function ajouterCours(nouveauCours) {
       const updatedCours = [
         ...cours,
@@ -19,7 +19,7 @@ import ListeCours from "../components/ListeCours";
     }
     return (
       <React.Fragment>
-      <NouveauCours ajouterCours={ajouterCours} />
+      <NouveauCours ajouterCours={ajouterCours} profs={profs} setProfs={setProfs}/>
       <ListeCours cours={cours} />
       </React.Fragment>
     

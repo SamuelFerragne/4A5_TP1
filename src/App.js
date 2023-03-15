@@ -81,10 +81,10 @@ function App() {
             <Profs profs={PROFS} setProfs={setProfs} cours={COURS}/>
           </Route>
           <Route path="/cours" exact>
-            <Cours cours={COURS} setCours={setCours} />
+            <Cours cours={COURS} setCours={setCours} profs={PROFS} setProfs={setProfs}/>
           </Route>
           <Route path="/cours/:idCours" exact>
-            <CourSelect cours={COURS} setCours={setCours} />
+            <CourSelect cours={COURS} setCours={setCours} profs={PROFS}/>
           </Route>
           <Redirect to="/" />
         </Switch>

@@ -1,34 +1,54 @@
 import React, { useState } from "react";
 
-function NouveauCours({ ajouterCours }) {
+function NouveauCours({ ajouterCours, profs , setProfs}) {
   const [titre, setTitre] = useState("");
   const [discipline, setDiscipline] = useState("");
-  const [placesMax,setPlacesMax ] = useState();
+  const [placesMax,setPlacesMax ] = useState("");
   const [dateDebut,setDateDebut] = useState("");
   const [dateFin,setDateFin] = useState("");
+  const [selectedProf, setSelectedProf] = useState("");
 
   function ajouterCoursHandler(event) {
     event.preventDefault();
 
-    if (titre === "" || discipline === "" || placesMax === "" || dateDebut === "" || dateFin === "") {
+    if (titre === "" || discipline === "" || placesMax === "" || dateDebut === "" || dateFin === "" || !selectedProf) {
       alert("Veuillez remplir tous les champs");
       return;
     }
 
+
+    const firstWordTitre = titre.trim().split(" ")[0];
+    const selectedProfObj = profs.find((prof) => prof.nom === selectedProf.nom);
+    const coursId = firstWordTitre + selectedProfObj.nom;
+
     const nouveauCours = {
+      id: coursId,
       titre: titre,
       discipline: discipline,
       placesMax: placesMax,
       dateDebut: dateDebut,
       dateFin: dateFin,
+      prof: selectedProfObj.prenom + " " + selectedProfObj.nom,
     };
 
     ajouterCours(nouveauCours);
+
+    const updatedProfs = profs.map((prof) =>
+      prof.nom === selectedProf.nom
+        ? {
+            ...prof,
+            cours: [...prof.cours, nouveauCours],
+          }
+        : prof
+    );
+
+    setProfs(updatedProfs);
     setTitre("");
     setDiscipline("");
     setPlacesMax(0);
     setDateDebut("")
     setDateFin("");
+    setSelectedProf("");
   }
 
   return (
@@ -67,6 +87,18 @@ function NouveauCours({ ajouterCours }) {
             onChange={(event) => setDateFin(event.target.value)}
             placeholder="Date fin"
         />
+        <br />
+        <select value={selectedProf ? selectedProf.nom : ""} onChange={(event) => {
+        const selectedProf = profs.find((p) => p.nom === event.target.value);
+        setSelectedProf(selectedProf);
+      }}>
+        <option value="">Sélectionnez un professeur</option>
+        {profs.map((prof) => (
+          <option key={prof.nom} value={prof.nom}>
+            {prof.prenom} {prof.nom}
+          </option>
+        ))}
+      </select>
         <br />
       <button type="submit">Ajouter un cours</button>
     </form>
