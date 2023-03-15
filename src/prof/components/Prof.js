@@ -17,9 +17,11 @@ function Prof({ prof }) {
           <h2>
             {prof.prenom} {prof.nom}
           </h2>
-          {prof.cours.map((cour) => (
-            <h3>{cour.titre}</h3>
-          ))}
+          <ul>
+            {prof.cours.map((cour) => (
+              <li>{cour.titre}</li>
+            ))}
+          </ul>
         </div>
       </Card>
     </li>
