@@ -17,7 +17,7 @@ function ListeProfs(props) {
   return (
     <ul className="profs-list">
       {props.profs.map((prof) => (
-        <Prof key={prof.id} prof={prof} />
+        <Prof key={prof.nom} prof={prof} />
       ))}
     </ul>
   );
