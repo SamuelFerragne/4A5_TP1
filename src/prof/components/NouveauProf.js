@@ -1,60 +1,56 @@
 import React, { useState } from "react";
 
 function NouveauProf({ methodeAjouterProf }) {
-  const [saisie, setSaisie] = useState("");
   const [prenom, setPrenom] = useState("");
   const [nom, setNom] = useState("");
   const [photo, setPhoto] = useState("");
+  const [dateEmbauche, setDateEmbauche] = useState("");
 
   function ajouterNouveauProfHandler(event) {
     event.preventDefault();
+
+    if (!prenom || !nom || !photo || !dateEmbauche) {
+      alert("Veuillez remplir tous les champs");
+      return;
+    }
+
     const nouveauProf = {
       id: "12",
       nom: nom,
       prenom: prenom,
       photo: photo,
+      dateEmbauche: dateEmbauche
     };
 
-    if (saisie === "") {
-      alert("Veuillez entrer un objectif");
-      return;
-    }
     methodeAjouterProf(nouveauProf);
     setPrenom("");
     setNom("");
+    setPhoto("");
+    setDateEmbauche("");
   }
 
   function nomHandler(event) {
-    if (event.taget.value.length === 0) {
-      alert("Entrez un nom");
-      return;
-    }
-
     setNom(event.target.value);
   }
 
   function prenomHandler(event) {
-    if (event.taget.value.length === 0) {
-      alert("Entrez un nom");
-      return;
-    }
-
-    setNom(event.target.value);
+    setPrenom(event.target.value);
   }
 
-  function saisieHandler(event) {
-    if (event.target.value.includes("f")) {
-      alert("f impossible");
-      return;
-    }
-    setSaisie(event.target.value);
+  function photoHandler(event) {
+    setPhoto(event.target.value);
+  }
+
+  function dateEmbaucheHandler(event) {
+    setDateEmbauche(event.target.value);
   }
 
   return (
     <form onSubmit={ajouterNouveauProfHandler}>
-      <input type="text" value={prenom} onChange={prenomHandler} /> Prenom{" "}
-      <br />
+      <input type="text" value={prenom} onChange={prenomHandler} /> Prénom <br />
       <input type="text" value={nom} onChange={nomHandler} /> Nom <br />
+      <input type="url" value={photo} onChange={photoHandler} /> Photo <br />
+      <input type="date" value={dateEmbauche} onChange={dateEmbaucheHandler} /> Date d'embauche <br />
       <button type="submit">Soumettre</button>
     </form>
   );
