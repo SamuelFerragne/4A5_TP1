@@ -14,8 +14,14 @@ function Prof({ prof }) {
         </div>
 
         <div className="prof-item__info">
-          <h2>{prof.prenom} {prof.nom}</h2>
-          <h3>{prof.cours}</h3>
+          <h2>
+            {prof.prenom} {prof.nom}
+          </h2>
+          <ul>
+            {prof.cours.map((cour) => (
+              <li key={cour.id}>{cour.titre}</li>
+            ))}
+          </ul>
         </div>
       </Card>
     </li>

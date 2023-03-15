@@ -59,11 +59,15 @@ function App() {
 
   const [PROFS, setProfs] = useState([
     {
-      id: "u1",
-      nom: "Sylvain Labranche",
-      image: defaultImage,
+      prenom: "Sylvain",
+      nom: "Labranche",
+      photo: defaultImage,
+      dateEmbauche: "",
+      cours: [],
     },
   ]);
+
+  PROFS[0].cours = COURS.filter((cour) => cour.prof.includes(PROFS[0].nom));
 
   return (
     <Router>
