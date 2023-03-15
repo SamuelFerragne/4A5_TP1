@@ -61,7 +61,7 @@ function App() {
     {
       prenom: "Sylvain",
       nom: "Labranche",
-      image: defaultImage,
+      photo: defaultImage,
       dateEmbauche: "",
       cours: [],
     },
