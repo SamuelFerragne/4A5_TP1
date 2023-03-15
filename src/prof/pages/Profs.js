@@ -2,7 +2,8 @@ import React, { useState } from "react";
 import ListeProfs from "../components/ListeProfs";
 import NouveauProf from "../components/NouveauProf";
 
-function Profs({ profs, setProfs }) {
+
+function Profs({ profs, setProfs, cours }) {
   function ajouterProf(nouveauProf) {
     setProfs(profs.concat(nouveauProf));
   }
@@ -10,7 +11,7 @@ function Profs({ profs, setProfs }) {
   return (
     <React.Fragment>
       <ListeProfs profs={profs} />
-      <NouveauProf methodeAjouterProf={ajouterProf} />
+      <NouveauProf methodeAjouterProf={ajouterProf} cours={cours}/>
     </React.Fragment>
   );
 }

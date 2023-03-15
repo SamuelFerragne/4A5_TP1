@@ -17,7 +17,7 @@ function ListeCours(props) {
   return (
     <ul className="cours-list">
       {props.cours.map((cour) => (
-        <Cour key={cour.id} cour={cour} />
+        <Cour key={cour.id} cour={cour}/>
       ))}
     </ul>
   );

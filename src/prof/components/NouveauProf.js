@@ -1,10 +1,12 @@
 import React, { useState } from "react";
+import defaultImage from "./default_user.png";
 
-function NouveauProf({ methodeAjouterProf }) {
+function NouveauProf({ methodeAjouterProf, cours }) {
   const [prenom, setPrenom] = useState("");
   const [nom, setNom] = useState("");
-  const [photo, setPhoto] = useState("");
+  const [photo, setPhoto] = useState("defaultImage");
   const [dateEmbauche, setDateEmbauche] = useState("");
+  const [selectedCours, setSelectedCours] = useState([]);
 
   function ajouterNouveauProfHandler(event) {
     event.preventDefault();
@@ -20,6 +22,7 @@ function NouveauProf({ methodeAjouterProf }) {
       prenom: prenom,
       photo: photo,
       dateEmbauche: dateEmbauche,
+      cours: selectedCours,
     };
 
     methodeAjouterProf(nouveauProf);
@@ -27,6 +30,15 @@ function NouveauProf({ methodeAjouterProf }) {
     setNom("");
     setPhoto("");
     setDateEmbauche("");
+    setSelectedCours([]);
+  }
+
+  function toggleCourse(courseId) {
+    if (selectedCours.includes(courseId)) {
+      setSelectedCours(selectedCours.filter((id) => id !== courseId));
+    } else {
+      setSelectedCours([...selectedCours, courseId]);
+    }
   }
 
   function nomHandler(event) {
@@ -50,14 +62,20 @@ function NouveauProf({ methodeAjouterProf }) {
       <input type="text" value={prenom} onChange={prenomHandler} /> Prénom{" "}
       <br />
       <input type="text" value={nom} onChange={nomHandler} /> Nom <br />
-      <input type="file" accept="image/*" onChange={photoHandler} /> Photo{" "}
+
+      <input type="file" accept="image/*" onChange={photoHandler} /> Photo <br />
+      {cours.map((course) => (
+        <label key={course.id}>
+          <input
+            type="checkbox"
+            checked={selectedCours.includes(course.id)}
+            onChange={() => toggleCourse(course.id)}
+          />
+          {course.titre}
+        </label>
+      ))}
       <br />
-      <input
-        type="date"
-        value={dateEmbauche}
-        onChange={dateEmbaucheHandler}
-      />{" "}
-      Date d'embauche <br />
+      <input type="date" value={dateEmbauche} onChange={dateEmbaucheHandler} /> Date d'embauche <br />
       <button type="submit">Soumettre</button>
     </form>
   );

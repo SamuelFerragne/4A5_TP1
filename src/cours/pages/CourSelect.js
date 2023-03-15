@@ -1,14 +1,27 @@
 import React from "react";
-import { useParams } from "react-router-dom";
+import { useParams, useLocation } from "react-router-dom";
 import ListeEtudiants from "../../etudiants/components/ListeEtudiants";
+import NouveauEtudiant from "../components/NouveauEtudiant";
 
-function CourSelect({ cours }) {
+function CourSelect({ cours, setCours }) {
   const idCours = useParams().idCours;
-  var cour = cours.filter((cour) => cour.id === idCours);
-  cour = cour[0];
+  const cour = cours.find((c) => c.id === idCours);
+
+  function ajouterEtudiant(nouvelEtudiant) {
+    const updatedCours = cours.map((c) => {
+      if (c.id === idCours) {
+        return { ...c, etudiants: [...c.etudiants, nouvelEtudiant] };
+      }
+      return c;
+    });
+
+    setCours(updatedCours);
+  }
+
   return (
     <React.Fragment>
       <ListeEtudiants etudiants={cour.etudiants} />
+      <NouveauEtudiant ajouterEtudiant={ajouterEtudiant} />
     </React.Fragment>
   );
 }
