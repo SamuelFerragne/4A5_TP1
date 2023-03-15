@@ -1,5 +1,5 @@
 import React from "react";
-import { useParams, useLocation } from "react-router-dom";
+import { useParams} from "react-router-dom";
 import ListeEtudiants from "../../etudiants/components/ListeEtudiants";
 import NouveauEtudiant from "../components/NouveauEtudiant";
 
