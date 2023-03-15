@@ -20,7 +20,37 @@ function App() {
       placesMax: 20,
       dateDebut: "01-01-2023",
       dateFin: "06-06-2023",
-      prof: "Sylvain-Labranche",
+      prof: "Sylvain Labranche",
+      etudiants: [
+        { prenom: "Samuel", nom: "Ferragne", DA: "FERS0123456" },
+        { prenom: "Liam", nom: "Brouillard", DA: "BROL0123456" },
+      ],
+    },
+    {
+      id: "environnementBergeron",
+      titre: "Environnement graphique client/serveur",
+      discipline: "Informatique",
+      placesMax: 20,
+      dateDebut: "01-01-2023",
+      dateFin: "06-06-2023",
+      prof: "Mathieu Bergeron",
+      etudiants: [
+        { prenom: "Samuel", nom: "Ferragne", numero: "FERS0123456" },
+        { prenom: "Liam", nom: "Brouillard", numero: "BROL0123456" },
+      ],
+    },
+    {
+      id: "objetDeschenes",
+      titre: "Objets connectés",
+      discipline: "Informatique",
+      placesMax: 20,
+      dateDebut: "01-01-2023",
+      dateFin: "06-06-2023",
+      prof: "Simon Deschenes",
+      etudiants: [
+        { prenom: "Samuel", nom: "Ferragne", DA: "FERS0123456" },
+        { prenom: "Liam", nom: "Brouillard", DA: "BROL0123456" },
+      ],
     },
   ]);
 

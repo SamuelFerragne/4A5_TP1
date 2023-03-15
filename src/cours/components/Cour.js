@@ -11,11 +11,14 @@ function Cour({ cour }) {
       <Card className="cour-item__content">
         <Link to={`cours/${cour.id}/`}>
           <div className="cour-item__info">
-            <h2>{cour.titre}</h2>
-            <h3>
-              {cour.placesMax} {cour.placesMax < 2 ? "place" : "places"} maximum
-            </h3>
-            <h3>{cour.prof}</h3>
+            <h3>{cour.titre}</h3>
+            <ul>
+              <li>discipline: {cour.discipline}</li>
+              <li>Nombre de places maximum: {cour.placesMax}</li>
+              <li>Date de début: {cour.dateDebut}</li>
+              <li>Date de fin: {cour.dateFin}</li>
+              <li>Nom du professeur: {cour.prof}</li>
+            </ul>
           </div>
         </Link>
       </Card>

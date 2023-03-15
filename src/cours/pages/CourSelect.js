@@ -1,5 +1,6 @@
 import React from "react";
 import { useParams } from "react-router-dom";
+import ListeEtudiants from "../../etudiants/components/ListeEtudiants";
 
 function CourSelect({ cours }) {
   const idCours = useParams().idCours;
@@ -7,14 +8,7 @@ function CourSelect({ cours }) {
   cour = cour[0];
   return (
     <React.Fragment>
-      <h3>{cour.titre}</h3>
-      <ul>
-        <li>discipline: {cour.discipline}</li>
-        <li>Nombre de places maximum: {cour.placesMax}</li>
-        <li>Date de début: {cour.dateDebut}</li>
-        <li>Date de fin: {cour.dateFin}</li>
-        <li>Nom du professeur: {cour.prof}</li>
-      </ul>
+      <ListeEtudiants etudiants={cour.etudiants} />
     </React.Fragment>
   );
 }
