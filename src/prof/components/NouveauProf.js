@@ -4,7 +4,7 @@ import defaultImage from "./default_user.png";
 function NouveauProf({ methodeAjouterProf, cours }) {
   const [prenom, setPrenom] = useState("");
   const [nom, setNom] = useState("");
-  const [photo, setPhoto] = useState("defaultImage");
+  const [photo, setPhoto] = useState({defaultImage});
   const [dateEmbauche, setDateEmbauche] = useState("");
   const [selectedCours, setSelectedCours] = useState([]);
 
