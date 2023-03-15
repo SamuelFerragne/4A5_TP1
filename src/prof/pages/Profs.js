@@ -2,10 +2,9 @@ import React from "react";
 import ListeProfs from "../components/ListeProfs";
 import NouveauProf from "../components/NouveauProf";
 
-function Profs({ profs }) {
+function Profs({ profs, setProfs }) {
   function ajouterProf(nouveauProf) {
-    profs.setProfs(profs.concat(nouveauProf));
-    console.log(profs);
+    setProfs(profs.concat(nouveauProf));
   }
 
   return (
