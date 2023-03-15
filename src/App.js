@@ -74,10 +74,10 @@ function App() {
             <Accueil />
           </Route>
           <Route path="/profs" exact>
-            <Profs profs={PROFS} />
+            <Profs profs={PROFS} setProfs={setProfs} />
           </Route>
           <Route path="/cours" exact>
-            <Cours cours={COURS} />
+            <Cours cours={COURS} setCours={setCours} />
           </Route>
           <Route path="/cours/:idCours" exact>
             <CourSelect cours={COURS} />
