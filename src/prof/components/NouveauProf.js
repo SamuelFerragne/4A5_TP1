@@ -64,17 +64,6 @@ function NouveauProf({ methodeAjouterProf, cours }) {
       <input type="text" value={nom} onChange={nomHandler} /> Nom <br />
 
       <input type="file" accept="image/*" onChange={photoHandler} /> Photo <br />
-      {cours.map((course) => (
-        <label key={course.id}>
-          <input
-            type="checkbox"
-            checked={selectedCours.includes(course.id)}
-            onChange={() => toggleCourse(course.id)}
-          />
-          {course.titre}
-        </label>
-      ))}
-      <br />
       <input type="date" value={dateEmbauche} onChange={dateEmbaucheHandler} /> Date d'embauche <br />
       <button type="submit">Soumettre</button>
     </form>

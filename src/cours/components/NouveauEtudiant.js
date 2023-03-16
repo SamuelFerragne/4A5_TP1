@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-function NouveauEtudiant({ ajouterEtudiant }) {
+function NouveauEtudiant({ ajouterEtudiant, etudiants, placesMax}) {
   const [prenom, setPrenom] = useState("");
   const [nom, setNom] = useState("");
   const [numero, setNumero] = useState("");
@@ -10,6 +10,18 @@ function NouveauEtudiant({ ajouterEtudiant }) {
 
     if (prenom === "" || nom === "" || numero === "") {
       alert("Veuillez remplir tous les champs");
+      return;
+    }
+
+    const etudiantExistant = etudiants.find((etudiant) => etudiant.numero === numero);
+
+    if(etudiantExistant){
+      alert("Un étudiant avec ce numéro existe déjà dans le cours.");
+      return;
+    }
+
+    if (etudiants.length >= placesMax){
+      alert("Le nombre maximal d'étudiants pour ce cours a été atteint.");
       return;
     }
 

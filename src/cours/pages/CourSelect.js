@@ -21,7 +21,7 @@ function CourSelect({ cours, setCours }) {
   return (
     <React.Fragment>
       <ListeEtudiants etudiants={cour.etudiants} />
-      <NouveauEtudiant ajouterEtudiant={ajouterEtudiant} />
+      <NouveauEtudiant ajouterEtudiant={ajouterEtudiant} etudiants={cour.etudiants} placesMax={cour.placesMax}/>
     </React.Fragment>
   );
 }
