@@ -67,18 +67,29 @@ function App() {
     },
   ]);
 
-  function ajouterCoursEtMettreAJourProfs(nouveauCours){
+  function ajouterCoursEtMettreAJourProfs(nouveauCours, isNewProf) {
     setCours(COURS.concat(nouveauCours));
-
-    const updatedProfs = PROFS.map((prof) =>
-    prof.nom === nouveauCours.prof.split(" ")[1]
-      ? {
-          ...prof,
-          cours: [...prof.cours, nouveauCours],
-        }
-      : prof
-    );
-
+  
+    const updatedProfs = isNewProf
+      ? [
+          ...PROFS,
+          {
+            prenom: nouveauCours.prof.split(" ")[0],
+            nom: nouveauCours.prof.split(" ")[1],
+            photo: defaultImage,
+            dateEmbauche: "",
+            cours: [nouveauCours],
+          },
+        ]
+      : PROFS.map((prof) =>
+          prof.nom === nouveauCours.prof.split(" ")[1]
+            ? {
+                ...prof,
+                cours: [...prof.cours, nouveauCours],
+              }
+            : prof
+        );
+  
     setProfs(updatedProfs);
   }
   PROFS[0].cours = COURS.filter((cour) => cour.prof.includes(PROFS[0].nom));

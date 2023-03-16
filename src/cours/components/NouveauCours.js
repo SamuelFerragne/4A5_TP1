@@ -1,24 +1,45 @@
 import React, { useState } from "react";
 
-function NouveauCours({ ajouterCours, profs}) {
+function NouveauCours({ ajouterCours, profs }) {
   const [titre, setTitre] = useState("");
   const [discipline, setDiscipline] = useState("");
-  const [placesMax,setPlacesMax ] = useState("");
-  const [dateDebut,setDateDebut] = useState("");
-  const [dateFin,setDateFin] = useState("");
+  const [placesMax, setPlacesMax] = useState("");
+  const [dateDebut, setDateDebut] = useState("");
+  const [dateFin, setDateFin] = useState("");
   const [selectedProf, setSelectedProf] = useState("");
+  const [newProfPrenom, setNewProfPrenom] = useState("");
+  const [newProfNom, setNewProfNom] = useState("");
 
   function ajouterCoursHandler(event) {
     event.preventDefault();
 
-    if (titre === "" || discipline === "" || placesMax === "" || dateDebut === "" || dateFin === "" || !selectedProf) {
+    if (
+      titre === "" ||
+      discipline === "" ||
+      placesMax === "" ||
+      dateDebut === "" ||
+      dateFin === "" ||
+      (!selectedProf && (newProfPrenom === "" || newProfNom === ""))
+    ) {
       alert("Veuillez remplir tous les champs");
       return;
     }
 
-
     const firstWordTitre = titre.trim().split(" ")[0];
-    const selectedProfObj = profs.find((prof) => prof.nom === selectedProf.nom);
+    
+    let selectedProfObj;
+    if (selectedProf) {
+      selectedProfObj = profs.find((prof) => prof.nom === selectedProf.nom);
+    } else {
+      const currentDate = new Date().toISOString().slice(0, 10);
+      selectedProfObj = {
+        prenom: newProfPrenom,
+        nom: newProfNom,
+        photo: "default-image-url.jpg",
+        dateEmbauche: currentDate,
+        cours: [],
+      };
+    }
     const coursId = firstWordTitre + selectedProfObj.nom;
 
     const nouveauCours = {
@@ -30,12 +51,13 @@ function NouveauCours({ ajouterCours, profs}) {
       dateFin: dateFin,
       prof: selectedProfObj.prenom + " " + selectedProfObj.nom,
     };
+    
 
-    ajouterCours(nouveauCours);
+    ajouterCours(nouveauCours, !selectedProf);
     setTitre("");
     setDiscipline("");
     setPlacesMax(0);
-    setDateDebut("")
+    setDateDebut("");
     setDateFin("");
     setSelectedProf("");
   }
@@ -68,19 +90,23 @@ function NouveauCours({ ajouterCours, profs}) {
         value={dateDebut}
         onChange={(event) => setDateDebut(event.target.value)}
         placeholder="Date début"
-        />
-        <br />
-        <input
-            type="date"
-            value={dateFin}
-            onChange={(event) => setDateFin(event.target.value)}
-            placeholder="Date fin"
-        />
-        <br />
-        <select value={selectedProf ? selectedProf.nom : ""} onChange={(event) => {
-        const selectedProf = profs.find((p) => p.nom === event.target.value);
-        setSelectedProf(selectedProf);
-      }}>
+      />
+      <br />
+      <input
+        type="date"
+        value={dateFin}
+        onChange={(event) => setDateFin(event.target.value)}
+        placeholder="Date fin"
+      />
+      <br />
+      <select
+        value={selectedProf ? selectedProf.nom : ""}
+        onChange={(event) => {
+          const selectedProf = profs.find((p) => p.nom === event.target.value);
+          setSelectedProf(selectedProf);
+        }}
+        disabled={newProfPrenom !== "" || newProfNom !== ""}
+      >
         <option value="">Sélectionnez un professeur</option>
         {profs.map((prof) => (
           <option key={prof.nom} value={prof.nom}>
@@ -88,7 +114,23 @@ function NouveauCours({ ajouterCours, profs}) {
           </option>
         ))}
       </select>
-        <br />
+      <br />
+      <input
+        type="text"
+        value={newProfPrenom}
+        onChange={(event) => setNewProfPrenom(event.target.value)}
+        placeholder="Nouveau professeur prénom"
+        disabled={selectedProf}
+      />
+      <br />
+      <input
+        type="text"
+        value={newProfNom}
+        onChange={(event) => setNewProfNom(event.target.value)}
+        placeholder="Nouveau professeur nom"
+        disabled={selectedProf}
+      />
+      <br />
       <button type="submit">Ajouter un cours</button>
     </form>
   );
